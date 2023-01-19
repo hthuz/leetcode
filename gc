@@ -1,0 +1,20 @@
+#!/bin/sh
+# gc: get code 
+# Short cut to get the code and add it to clipboard so that you can directly copy it to leetcode website
+# Dependency: xclip
+
+# Check if it's cpp file
+if [[ $1 != *cpp ]] 
+then
+    echo "Please use a cpp file"
+    exit 1
+fi
+
+start=$(grep -n "class Solution" $1 | cut -d ":" -f 1 || exit 2)
+end=$(grep -n "int main()" $1 | cut -d ":" -f 1 || exit 3)
+end=$(($end-1))
+
+code=$(head -n ${end} $1 | tail -n $(($end - $start + 1)))
+echo "$code" | xclip -selection clipboard || exit 4
+
+
