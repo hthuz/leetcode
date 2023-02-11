@@ -1,5 +1,7 @@
 
 
+#ifndef _LIB_H
+#define _LIB_H
 #include <vector>
 
 using namespace std;
@@ -27,4 +29,4 @@ ListNode* arr_to_list(int* array, int size);
 // Given a singly linked list, print all its values
 void print_list(ListNode* head);
 
-
+#endif
