@@ -3,10 +3,11 @@
 #define _UTILS_H_
 #include <iostream>
 #include <stack>
+#include <vector>
 using namespace std;
 
 
-void print_stack(stack<char> st);
+#define NULLVAL -1000
 
 struct TreeNode {
     int val;
@@ -17,4 +18,10 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+void print_stack(stack<char> st);
+TreeNode* vec_to_tree(vector<int>& num);
+void _bt_insert(int index, vector<int>& num, TreeNode* root);
+
 #endif
+
+

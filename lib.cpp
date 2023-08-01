@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <vector>
 #include "lib.h"
 
 using namespace std;
