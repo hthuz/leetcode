@@ -14,6 +14,19 @@ void print_stack(stack<char> st)
     cout << endl;
 }
 
+void print_2dvec(vector<vector<string>>& nums)
+{
+    for(vector<string> one_vec : nums)    
+    {
+        cout << "[";
+        for(string x : one_vec)
+            if (x == "")
+                cout << " " << ",";
+            else
+                cout << x << ",";
+        cout << "]\n";
+    }
+}
 
 TreeNode* vec_to_tree(vector<int>& num)
 {
