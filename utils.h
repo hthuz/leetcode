@@ -33,6 +33,7 @@ private:
 
 void print_stack(stack<char> st);
 void print_2dvec(vector<vector<string>>& nums);
+void print_2dvec(vector<vector<int>>& nums);
 TreeNode* vec_to_tree(vector<int>& num);
 void _bt_insert(int index, vector<int>& num, TreeNode* root);
 

@@ -65,6 +65,17 @@ void print_2dvec(vector<vector<string>>& nums)
     }
 }
 
+void print_2dvec(vector<vector<int>>& nums)
+{
+    for(vector<int> one_vec : nums)    
+    {
+        cout << "[";
+        for(int x : one_vec)
+            cout << x << ",";
+        cout << "]\n";
+    }
+}
+
 TreeNode* vec_to_tree(vector<int>& num)
 {
     TreeNode* root = new TreeNode(num[0]);
