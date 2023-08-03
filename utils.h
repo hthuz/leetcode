@@ -20,6 +20,17 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// From 655 print tree
+class PrintTree {
+public:
+    vector<vector<string>> printTree(TreeNode* root);
+private:
+    int height;
+    vector<vector<string>> res;
+    void _printTree(TreeNode* root, int row, int col);
+    int getHeight(TreeNode* root);
+};
+
 void print_stack(stack<char> st);
 void print_2dvec(vector<vector<string>>& nums);
 TreeNode* vec_to_tree(vector<int>& num);
