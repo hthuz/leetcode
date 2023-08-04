@@ -6,7 +6,10 @@
 #include <vector>
 // pow
 #include <math.h>
+// Infinity
 #include <limits>
+// max_element
+#include <algorithm>
 using namespace std;
 
 
