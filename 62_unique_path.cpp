@@ -44,5 +44,4 @@ int main()
 {
     int res = Solution().uniquePaths(3,7);
     cout << res << endl;
-
 }

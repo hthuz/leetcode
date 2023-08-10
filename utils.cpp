@@ -51,6 +51,15 @@ void print_stack(stack<char> st)
     cout << endl;
 }
 
+vector<vector<int>> init_2dvec(int m, int n, int init_val)
+{
+    vector<vector<int>> f(m, vector<int>(n,init_val));
+    // the address of vector doesn't change.
+    // It seems that it's initialized into heap instead of local stack.
+    return f;
+
+}
+
 void print_2dvec(vector<vector<string>>& nums)
 {
     for(vector<string> one_vec : nums)    
@@ -64,6 +73,7 @@ void print_2dvec(vector<vector<string>>& nums)
         cout << "]\n";
     }
 }
+
 
 void print_2dvec(vector<vector<int>>& nums)
 {
