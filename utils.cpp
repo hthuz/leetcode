@@ -112,5 +112,34 @@ void _bt_insert(int index,vector<int>& num, TreeNode* root)
 }
 
 
+ListNode* arr_to_list(int* array, int size)
+{
+    ListNode* head;
+    ListNode* cur;
+    int i;
+    
+    cur = new ListNode(array[0]);
+    head = cur;
+    for(i = 1; i < size ; i++)
+    {
+        ListNode* next = new ListNode(array[i]);
+        cur->next = next;
+        cur = next;
+    }
+    return head;
+}
 
 
+void print_list(ListNode* head)
+{
+    ListNode* node;
+    node = head;
+    int i = 0;
+    while(node && i < 20)
+    {
+        cout << node->val << " ";
+        node = node->next;
+        i++;
+    }
+    cout << endl;
+}
