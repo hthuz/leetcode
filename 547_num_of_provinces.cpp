@@ -9,9 +9,17 @@ public:
         this->visited = vector<int>(n,0);
         this->isConnected = isConnected;
 
-        int cc_num = 1;
-        dfs(0);
+        return recursive_sol();
 
+    }
+private:
+    vector<int> visited;
+    vector<vector<int>> isConnected;
+    int n;
+
+    int recursive_sol() {
+        int cc_num = 0;
+        // For all unvisited vertices
         for(int i = 0; i < n; i++) {
             if(!visited[i]) {
                 dfs(i);
@@ -20,10 +28,6 @@ public:
         }
         return cc_num;
     }
-private:
-    vector<int> visited;
-    vector<vector<int>> isConnected;
-    int n;
 
     void dfs(int vertex) {
         if(visited[vertex])
