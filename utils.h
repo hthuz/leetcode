@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stack>
 #include <vector>
+#include <unordered_map>
 // pow
 #include <math.h>
 // Infinity
