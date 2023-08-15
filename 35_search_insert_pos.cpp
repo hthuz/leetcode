@@ -1,6 +1,8 @@
 
 #include "utils.h"
 
+
+// Given solution:  Find the first element that is equal to or greater than the target
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
