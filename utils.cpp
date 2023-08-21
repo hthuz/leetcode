@@ -74,6 +74,20 @@ void print_2dvec(vector<vector<string>>& nums)
     }
 }
 
+template<typename T>
+void print_2dvec(vector<vector<T>>& nums)
+{
+    for(vector<T> one_vec : nums)    
+    {
+        cout << "[";
+        for(T x : one_vec)
+        if (x == "")
+            cout << " " << ",";
+        else
+            cout << x << ",";
+        cout << "]\n";
+    }
+}
 
 void print_2dvec(vector<vector<int>>& nums)
 {
@@ -85,6 +99,18 @@ void print_2dvec(vector<vector<int>>& nums)
         cout << "]\n";
     }
 }
+
+void print_2dvec(vector<vector<char>>& nums)
+{
+    for(vector<char> one_vec : nums)    
+    {
+        cout << "[";
+        for(int x : one_vec)
+            cout << x << ",";
+        cout << "]\n";
+    }
+}
+
 
 TreeNode* vec_to_tree(vector<int>& num)
 {
