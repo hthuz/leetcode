@@ -52,6 +52,7 @@ vector<vector<int>> init_2dvec(int m, int n, int init_val);
 void print_2dvec(vector<vector<string>>& nums);
 void print_2dvec(vector<vector<char>>& nums);
 void print_2dvec(vector<vector<int>>& nums);
+// A null is represented by macro NULLVAL
 TreeNode* vec_to_tree(vector<int>& num);
 void _bt_insert(int index, vector<int>& num, TreeNode* root);
 
