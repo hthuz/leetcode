@@ -2,6 +2,7 @@
 #ifndef _UTILS_H_
 #define _UTILS_H_
 #include <iostream>
+#include <sstream>
 #include <stack>
 #include <vector>
 #include <list>
