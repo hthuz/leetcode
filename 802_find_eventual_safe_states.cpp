@@ -1,58 +1,54 @@
 
+
+
+//
+// Version 1.0 My solution is to remove terminal nodes every time and update graph until there's no terminal nodes
+// The time complexity can be high
+// The problem is actually equivalent to find all nodes not in any cycle.
+// Version 2.0 Use queue to speed up.
+//
 #include "utils.h"
 #include <ostream>
 class Solution {
 public:
     vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
-        if(graph.empty())
-            return {};
         int n = graph.size();
-        this->graph = graph;
-        this->removed_node = vector<int>(n,0);
-        this->graph_rm_node = vector<int>(n,0);
         vector<int> safe_nodes = {};
-        vector<int> terminal_nodes;
+        vector<int> out_deg = vector<int>(n,0);
+        queue<int> q;
 
         // Create reverse graph
         vector<vector<int>> rev_graph = vector<vector<int>>(n,vector<int>());
-        for(int i = 0; i < n; i++)
-            for(vector<int>::iterator dest = graph[i].begin(); dest != graph[i].end(); dest++)
-                rev_graph[*dest].push_back(i);
-        
-        // Delete terminal node one by one
-        while(!(terminal_nodes = get_terminal_node()).empty())
-        {
-            for(vector<int>::iterator node = terminal_nodes.begin(); node != terminal_nodes.end(); node++)
-            {
-                removed_node[*node] = 1;
-                safe_nodes.push_back(*node);
-                for(vector<int>::iterator src = rev_graph[*node].begin(); src != rev_graph[*node].end(); src++)
-                    graph_rm_node[*src]++;
-            }
+        for(int i = 0; i < n; i++) {
+            for(int dest : graph[i])
+                rev_graph[dest].push_back(i);
+            out_deg[i] = graph[i].size();
+            if(!out_deg[i])
+                q.push(i);
         }
-        sort(safe_nodes.begin(), safe_nodes.end());
-        return safe_nodes;
-    }
-private:
-    vector<vector<int>> graph;
-    vector<int> removed_node;
-    vector<int> graph_rm_node; // Indiate how many nodes are deleted for each node.
-    // Return -1 if there's no terminal node
-    vector<int> get_terminal_node() {
-        int n = graph.size();
-        vector<int> terminal_nodes = {};
+
+        while(!q.empty())
+        {
+            int node = q.front();
+            // safe_nodes.push_back(node);
+            q.pop();
+            for(int src : rev_graph[node])
+                if (--out_deg[src] == 0)
+                    q.push(src);
+        }
+
         for(int i = 0; i < n; i++)
-            if(graph[i].size() == graph_rm_node[i] && !removed_node[i])
-                terminal_nodes.push_back(i);
-        return terminal_nodes;
-                
+            if(!out_deg[i])
+                safe_nodes.push_back(i);
+        // sort(safe_nodes.begin(), safe_nodes.end());
+        return safe_nodes;
     }
     
 };
 
 int main()
 {
-    vector<vector<int>> graph = {};
+    vector<vector<int>> graph = {{1,2},{2,3},{5},{0},{5},{},{}};
     vector<int> ans = Solution().eventualSafeNodes(graph);
     for(int x : ans)
         cout << x << " ";
