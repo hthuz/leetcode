@@ -11,7 +11,7 @@ public:
         this->removed_node = vector<int>(n,0);
         this->graph_rm_node = vector<int>(n,0);
         vector<int> safe_nodes = {};
-        int terminal_node;
+        vector<int> terminal_nodes;
 
         // Create reverse graph
         vector<vector<int>> rev_graph = vector<vector<int>>(n,vector<int>());
@@ -20,14 +20,16 @@ public:
                 rev_graph[*dest].push_back(i);
         
         // Delete terminal node one by one
-        while((terminal_node = get_terminal_node()) != -1)
+        while(!(terminal_nodes = get_terminal_node()).empty())
         {
-            removed_node[terminal_node] = 1;
-            safe_nodes.push_back(terminal_node);
-            for(vector<int>::iterator src = rev_graph[terminal_node].begin(); src != rev_graph[terminal_node].end(); src++)
-                graph_rm_node[*src]++;
+            for(vector<int>::iterator node = terminal_nodes.begin(); node != terminal_nodes.end(); node++)
+            {
+                removed_node[*node] = 1;
+                safe_nodes.push_back(*node);
+                for(vector<int>::iterator src = rev_graph[*node].begin(); src != rev_graph[*node].end(); src++)
+                    graph_rm_node[*src]++;
+            }
         }
-
         sort(safe_nodes.begin(), safe_nodes.end());
         return safe_nodes;
     }
@@ -36,12 +38,14 @@ private:
     vector<int> removed_node;
     vector<int> graph_rm_node; // Indiate how many nodes are deleted for each node.
     // Return -1 if there's no terminal node
-    int get_terminal_node() {
+    vector<int> get_terminal_node() {
         int n = graph.size();
+        vector<int> terminal_nodes = {};
         for(int i = 0; i < n; i++)
             if(graph[i].size() == graph_rm_node[i] && !removed_node[i])
-                return i;
-        return -1;
+                terminal_nodes.push_back(i);
+        return terminal_nodes;
+                
     }
     
 };
