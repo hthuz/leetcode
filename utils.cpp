@@ -140,19 +140,14 @@ void _bt_insert(int index,vector<int>& num, TreeNode* root)
 
 ListNode* arr_to_list(int* array, int size)
 {
-    ListNode* head;
-    ListNode* cur;
-    int i;
-    
-    cur = new ListNode(array[0]);
-    head = cur;
-    for(i = 1; i < size ; i++)
-    {
-        ListNode* next = new ListNode(array[i]);
-        cur->next = next;
-        cur = next;
-    }
-    return head;
+    ListNode* dummy = new ListNode();
+    ListNode* cur = dummy;
+    for(int i = 0; i < size; i++)
+        cur = (cur->next = new ListNode(array[i]));
+
+    cur = dummy->next;
+    free(dummy);
+    return cur;
 }
 
 
